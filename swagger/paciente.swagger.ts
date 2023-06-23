@@ -1,20 +1,23 @@
 export default {
-	/** 
-     *
-     * 
-     * @swagger
-     * 
-     * /paciente:
-     *   post:
-     *     sumary: Obtener un mensaje de prueba
-     *     responses: 
-     *        200:
-     *           descripcion: Has obtenido un mensaje de prueba
-     *           type: string
-     *           content: Mensaje de ejemplo
-     *           text/plain:
-     *           ejemplo: "Bienvenidos a typescript"
-     * 
-     *  
-     */
-}
+  /**
+   *
+   *
+   * @swagger
+   *
+   * /paciente:
+   *   post:
+   *     summary: Crear un nuevo paciente
+   *     responses:
+   *       200:
+   *         description: Se ha creado exitosamente el paciente
+   *       400:
+   *         description: Ha ocurrido un error al crear el paciente
+   *
+   *        type: string
+   *           content: Mensaje de ejemplo
+   *           text/plain:
+   *           ejemplo: "Bienvenidos a typescript"
+   *
+   *
+   */
+};
