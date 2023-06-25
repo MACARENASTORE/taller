@@ -84,7 +84,6 @@ class PacienteController {
         }
       }
 
-
 }
 
 export default PacienteController

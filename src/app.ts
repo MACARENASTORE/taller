@@ -4,6 +4,7 @@ import { swaggerSpec } from './swagger.conf'
 import express,{Application, Request, Response} from 'express'
 
 import PacienteRouter from './routes/pacienteRoute'
+import MedicoRouter from './routes/medicoRoute'
 
 import cors from 'cors'
 
@@ -48,6 +49,7 @@ class App{
 	private routes():void{
 		
         this.app.use('/', PacienteRouter)
+		this.app.use('/', MedicoRouter)
 	}
 
 	public start():void{

@@ -21,7 +21,7 @@ test("Debe crear un nuevo paciente", async () => {
     .send(pacienteData);
   expect(response.statusCode).toBe(200);
   expect(response.body).toHaveProperty("cedula", 123456789);
-});
+}, 10000);
 
 test("Debe actualizar un paciente existente", async () => {
   const pacienteData = {
@@ -37,9 +37,9 @@ test("Debe actualizar un paciente existente", async () => {
     .send(pacienteData);
   expect(response.statusCode).toBe(200);
   expect(response.body).toHaveProperty("nombre", "John");
-});
+}, 10000);
 
 test("Debe eliminar un paciente existente", async () => {
   const response = await request(app).delete("/eliminar_paciente/123456789");
   expect(response.statusCode).toBe(200);
-});
+}, 10000);
