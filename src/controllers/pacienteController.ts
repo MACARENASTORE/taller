@@ -59,7 +59,7 @@ class PacienteController {
         try {
           const { cedula } = req.params;
           const {
-            nombre,
+            nombre ,
             apellido,
             fecha,
             telefono,

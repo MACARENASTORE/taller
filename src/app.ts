@@ -5,6 +5,8 @@ import express,{Application, Request, Response} from 'express'
 
 import PacienteRouter from './routes/pacienteRoute'
 import MedicoRouter from './routes/medicoRoute'
+import CitaRouter from './routes/citaRoute'
+import FormularioRouter from './routes/formularioRoute'
 
 import cors from 'cors'
 
@@ -50,13 +52,15 @@ class App{
 		
         this.app.use('/', PacienteRouter)
 		this.app.use('/', MedicoRouter)
+		this.app.use('/', CitaRouter)
+		this.app.use('/', FormularioRouter)
 	}
 
 	public start():void{
 
 		this.server=this.app.listen(
 			3001,
-			()=>{console.log('El servidor está escuchando en el puerto 3000')}
+			()=>{console.log('El servidor está escuchando en el puerto 3001')}
 		)
 	}
 

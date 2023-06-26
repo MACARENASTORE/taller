@@ -4,7 +4,7 @@ export default {
      * 
      * @swagger
      * 
-     * /doctor:
+     * /:crear_medicos:
      *   post:
      *     sumary: Obtener un mensaje de prueba
      *     responses: 
