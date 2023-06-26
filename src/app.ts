@@ -55,7 +55,7 @@ class App{
 	public start():void{
 
 		this.server=this.app.listen(
-			3000,
+			3001,
 			()=>{console.log('El servidor está escuchando en el puerto 3000')}
 		)
 	}

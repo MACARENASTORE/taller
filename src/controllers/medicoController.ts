@@ -68,6 +68,22 @@ class MedicoController {
       res.status(400).json({ error: error.message });
     }
   }
+
+  async eliminarMedico1(req: Request, res: Response) {
+    try {
+      const { tarjetaProfesional } = req.params;
+  
+      const medico = await this.prisma.medico.delete({
+        where: { tarjetaProfesional: Number(tarjetaProfesional) },
+      });
+  
+      res.json(medico);
+    } catch (e: any) {
+      res.status(400);
+      res.json({ error: e.message });
+    }
+  }
+
 }
 
 export default MedicoController;

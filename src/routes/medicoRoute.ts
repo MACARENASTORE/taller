@@ -25,7 +25,7 @@ class MedicoRouter {
       this.medicoController.actualizarMedico.bind(this.medicoController)
     );
     this.router.delete(
-      "/eliminar_paciente/:tarjetaProfesional",
+      "/eliminar_medico/:tarjetaProfesional",
       this.medicoController.eliminarMedico.bind(this.medicoController)
     );
   }
