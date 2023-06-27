@@ -1,18 +1,58 @@
 export default {
   /**
-   * 
    * @swagger
-   * 
+   *
    * /paciente:
-   *  post:
-   *      summary: Obtener un mensaje de prueba
-   *      responses:
-   *          200:
-   *              description: Has obtenido un mensaje de prueba
-   *              type: string
-   *              content:
-   *              text/plain:
-   *              example: "Bienvenidos a typescript"
-   * 
+   *   get:
+   *     summary: Obtener todos los pacientes
+   *     responses:
+   *       200:
+   *         description: Lista de pacientes
+   *
+  
+  
+   * @swagger
+   *
+   * /crear_paciente:
+   *   post:
+   *     summary: Crear un paciente
+   *     responses:
+   *       200:
+   *         description: Paciente creado exitosamente
+   *
+   
+  
+   * @swagger
+   *
+   * /actualizar_paciente/{cedula}:
+   *   put:
+   *     summary: Actualizar un paciente por cedula
+   *     parameters:
+   *       - in: path
+   *         name: cedula
+   *         required: true
+   *         schema:
+   *           type: string
+   *     responses:
+   *       200:
+   *         description: Paciente actualizado exitosamente
+   *
+    
+  
+   * @swagger
+   *
+   * /eliminar_paciente/{cedula}:
+   *   delete:
+   *     summary: Eliminar un paciente por cedula
+   *     parameters:
+   *       - in: path
+   *         name: cedula
+   *         required: true
+   *         schema:
+   *           type: string
+   *     responses:
+   *       200:
+   *         description: Paciente eliminado exitosamente
+   *
    */
-  }
+};

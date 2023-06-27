@@ -58,9 +58,11 @@ class App{
 
 	public start():void{
 
+		const puerto = 3001
+
 		this.server=this.app.listen(
-			3001,
-			()=>{console.log('El servidor está escuchando en el puerto 3001')}
+			puerto,
+			()=>{console.log(`El servidor está escuchando en el puerto ${puerto}`)}
 		)
 	}
 
