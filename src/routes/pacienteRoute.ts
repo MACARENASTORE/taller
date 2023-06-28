@@ -23,12 +23,12 @@ class PacienteRouter {
     );
 
     this.router.put(
-      "/actualizar_paciente/:cedula",
+      "/actualizar_paciente/cedula",
       this.pacienteController.actualizarPaciente.bind(this.pacienteController)
     );
 
     this.router.delete(
-      "/eliminar_paciente/:cedula",
+      "/eliminar_paciente/cedula",
       this.pacienteController.eliminarPaciente.bind(this.pacienteController)
     );
   }

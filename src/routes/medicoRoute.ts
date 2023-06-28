@@ -17,15 +17,15 @@ class MedicoRouter {
       this.medicoController.obtenerMedicos.bind(this.medicoController)
     );
     this.router.post(
-      "/:crear_medicos",
+      "/crear_medico",
       this.medicoController.crearMedico.bind(this.medicoController)
     );
     this.router.put(
-      "/actualizar_medico/:tarjetaProfesional",
+      "/actualizar_medico/tarjetaProfesional",
       this.medicoController.actualizarMedico.bind(this.medicoController)
     );
     this.router.delete(
-      "/eliminar_medico/:tarjetaProfesional",
+      "/eliminar_medico/tarjetaProfesional",
       this.medicoController.eliminarMedico.bind(this.medicoController)
     );
   }

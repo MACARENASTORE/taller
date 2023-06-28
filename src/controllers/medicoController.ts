@@ -19,7 +19,8 @@ class MedicoController {
 
   async crearMedico(req: Request, res: Response) {
     try {
-      const { tarjetaProfesional, nombre, apellido, consultorio, correo } = req.body;
+      const { nombre, apellido, consultorio, correo } = req.body;
+      const tarjetaProfesional = parseInt(req.body.tarjetaProfesional);
 
       const medico = await this.prisma.medico.create({
         data: {
@@ -79,8 +80,7 @@ class MedicoController {
   
       res.json(medico);
     } catch (e: any) {
-      res.status(400);
-      res.json({ error: e.message });
+      res.status(400).json({ error: e.message });
     }
   }
 

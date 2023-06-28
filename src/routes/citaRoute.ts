@@ -20,11 +20,11 @@ class CitaRouter {
       this.citaController.crearCita(req, res);
     });
 
-    this.router.put('/citas/:idCita', (req: Request, res: Response) => {
+    this.router.put('/citas/idCita', (req: Request, res: Response) => {
       this.citaController.actualizarCita(req, res);
     });
 
-    this.router.delete('/citas/:idCita', (req: Request, res: Response) => {
+    this.router.delete('/citas/idCita', (req: Request, res: Response) => {
       this.citaController.eliminarCita(req, res);
     });
   }

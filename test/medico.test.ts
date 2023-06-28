@@ -18,7 +18,7 @@ describe("Medico API", () => {
     expect(response.status).toBe(200);
   }, 20000);
 
-  test('POST /:crear_medicos - Debe crear un nuevo médico', async () => {
+  test('POST /crear_medicos - Debe crear un nuevo médico', async () => {
     const medicoData = {
       tarjetaProfesional: 123456,
       nombre: 'John',
@@ -28,13 +28,13 @@ describe("Medico API", () => {
     };
 
     const response = await request(app.app)
-      .post('/:crear_medicos')
+      .post('/crear_medicos')
       .send(medicoData);
     expect(response.status).toBe(200);
     expect(response.body).toHaveProperty('tarjetaProfesional', 123456);
   }, 20000);
 
-  test('PUT /actualizar_medico/:tarjetaProfesional - Debe actualizar un médico existente', async () => {
+  test('PUT /actualizar_medico/tarjetaProfesional - Debe actualizar un médico existente', async () => {
     const medicoData = {
       nombre: 'John',
       apellido: 'Doe',
@@ -49,7 +49,7 @@ describe("Medico API", () => {
     expect(response.body).toHaveProperty('nombre', 'John');
   }, 20000);
 
-  test('DELETE /eliminar_medico/:tarjetaProfesional - Debe eliminar un médico existente', async () => {
+  test('DELETE /eliminar_medico/tarjetaProfesional - Debe eliminar un médico existente', async () => {
     const response = await request(app.app).delete('/eliminar_medico/123456');
     expect(response.status).toBe(204);
   }, 20000);

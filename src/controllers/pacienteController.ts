@@ -14,6 +14,7 @@ class PacienteController {
     }
 
     async crearPaciente(req: Request, res: Response) {
+     
         try {
             const {
                 cedula,
@@ -57,6 +58,7 @@ class PacienteController {
 
       async actualizarPaciente(req: Request, res: Response) {
         try {
+          
           const { cedula } = req.params;
           const {
             nombre ,

@@ -34,7 +34,7 @@ describe("Paciente API", () => {
     expect(response.body).toHaveProperty("cedula", 123456789);
   }, 20000);
 
-  test("PUT /actualizar_paciente/:cedula - Debe actualizar un paciente existente", async () => {
+  test("PUT /actualizar_paciente/cedula - Debe actualizar un paciente existente", async () => {
     const pacienteData = {
       cedula: 123456789,
       nombre: "John",
@@ -50,7 +50,7 @@ describe("Paciente API", () => {
     expect(response.body).toHaveProperty("nombre", "John");
   }, 20000);
 
-  test("DELETE /eliminar_paciente/:cedula - Debe eliminar un paciente existente", async () => {
+  test("DELETE /eliminar_paciente/cedula - Debe eliminar un paciente existente", async () => {
     const response = await request(app.app).delete("/eliminar_paciente/123456789");
     expect(response.status).toBe(200);
   }, 20000);
