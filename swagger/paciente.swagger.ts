@@ -2,7 +2,7 @@ export default {
   /**
    * @swagger
    *
-   * /paciente:
+   * /pacientes:
    *   get:
    *     summary: Obtener todos los pacientes
    *     responses:
@@ -13,7 +13,7 @@ export default {
   
    * @swagger
    *
-   * /crear_paciente:
+   * /pacientes:
    *   post:
    *     summary: Crear un paciente
    *     responses:
@@ -24,7 +24,7 @@ export default {
   
    * @swagger
    *
-   * /actualizar_paciente/{cedula}:
+   * /pacientes/{cedula}:
    *   put:
    *     summary: Actualizar un paciente por cedula
    *     parameters:
@@ -41,7 +41,7 @@ export default {
   
    * @swagger
    *
-   * /eliminar_paciente/{cedula}:
+   * /pacientes/{cedula}:
    *   delete:
    *     summary: Eliminar un paciente por cedula
    *     parameters:

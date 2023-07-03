@@ -5,9 +5,8 @@ import PacienteRouter from './routes/pacienteRoute';
 import MedicoRouter from './routes/medicoRoute';
 import CitaRouter from './routes/citaRoute';
 import FormularioRouter from './routes/formularioRoute';
-
+import EspecialidadRouter from './routes/especialidadRoute';
 import cors from 'cors';
-import helmet from 'helmet';
 
 class App {
   public app: Application;
@@ -21,17 +20,17 @@ class App {
       swaggerUi.serve,
       swaggerUi.setup(swaggerSpec)
     );
-    this.app.use(cors());
-    this.setupHelmet();
-    this.routes();
-  }
 
-  private setupHelmet(): void {
-    this.app.use(
-      helmet({
-        referrerPolicy: { policy: 'no-referrer' }, // Configura la política de referencia a "no-referrer"
-      })
-    );
+    // Agregar el middleware CORS con las opciones deseadas
+    this.app.use(cors({
+      origin: '*',
+      methods: 'GET, POST, PUT, DELETE',
+      exposedHeaders: 'content-type',
+    }));
+
+    
+
+    this.routes();
   }
 
   private routes(): void {
@@ -41,10 +40,11 @@ class App {
     router.use('/', MedicoRouter);
     router.use('/', CitaRouter);
     router.use('/', FormularioRouter);
+    router.use('/', EspecialidadRouter);
   }
 
   public start(): void {
-    const puerto = 3000;
+    const puerto = 3001;
     this.server = this.app.listen(puerto, () => {
       console.log(`El servidor está escuchando en el puerto ${puerto}`);
     });

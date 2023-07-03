@@ -1,37 +1,22 @@
-import { Router, Request, Response } from "express";
-import PacienteController from "../controllers/pacienteController";
+import express from 'express';
+import PacienteController from '../controllers/pacienteController';
 
-class PacienteRouter {
-  router: Router;
-  pacienteController: PacienteController;
+const router = express.Router();
+const pacienteController = new PacienteController();
 
-  constructor() {
-    this.router = Router();
-    this.pacienteController = new PacienteController();
-    this.routes();
-  }
+// Ruta para crear un paciente
+router.post('/pacientes', pacienteController.crearPaciente);
 
-  private routes(): void {
-    this.router.get(
-      "/paciente",
-      this.pacienteController.obtenerPacientes.bind(this.pacienteController)
-    );
+// Ruta para obtener todos los pacientes
+router.get('/pacientes', pacienteController.obtenerPacientes);
 
-    this.router.post(
-      "/crear_paciente",
-      this.pacienteController.crearPaciente.bind(this.pacienteController)
-    );
+// Ruta para obtener un paciente por su ID
+router.get('/pacientes/:id', pacienteController.obtenerPacientePorId);
 
-    this.router.put(
-      "/actualizar_paciente/cedula",
-      this.pacienteController.actualizarPaciente.bind(this.pacienteController)
-    );
+// Ruta para actualizar un paciente
+router.put('/pacientes/:id', pacienteController.actualizarPaciente);
 
-    this.router.delete(
-      "/eliminar_paciente/cedula",
-      this.pacienteController.eliminarPaciente.bind(this.pacienteController)
-    );
-  }
-}
+// Ruta para eliminar un paciente
+router.delete('/pacientes/:id', pacienteController.eliminarPaciente);
 
-export default new PacienteRouter().router;
+export default router;

@@ -1,71 +1,69 @@
 import { Response, Request } from 'express';
 import { PrismaClient } from '@prisma/client';
 
+const prisma = new PrismaClient();
+
 class CitaController {
-  private prisma: PrismaClient;
-
-  constructor() {
-    this.prisma = new PrismaClient();
-  }
-
-  async obtenerCitas(req: Request, res: Response) {
+  obtenerCitas = async (req: Request, res: Response) => {
     try {
-      const citas = await this.prisma.cita.findMany();
+      const citas = await prisma.cita.findMany();
       res.json(citas);
-    } catch (error: any) {
-      res.status(500).json({ error: 'Error al obtener las citas' });
+    } catch (error) {
+      res.status(500).json({ error: 'No se pudo obtener la lista de citas.' });
     }
   }
 
-  async crearCita(req: Request, res: Response) {
+  crearCita = async (req: Request, res: Response) => {
     try {
-      const { idCita, fechaCita, pacienteCedula, medicoTarjetaProfesional } = req.body;
+      const {
+        idCita,
+        fechaCita,
+        pacienteCedula,
+        medicoTarjetaProfesional
+      } = req.body;
 
       const fecha = new Date(fechaCita);
-      const cita = await this.prisma.cita.create({
+      const cita = await prisma.cita.create({
         data: {
-          idCita,
+          idCita: Number(idCita),
           fecha,
-          pacienteCedula,
-          medicoTarjetaProfesional,
-        },
+          pacienteCedula: Number(pacienteCedula),
+          medicoTarjetaProfesional: Number(medicoTarjetaProfesional)
+        }
       });
       res.json(cita);
-    } catch (error: any) {
-      res.status(400).json({ error: error.message });
+    } catch (e: any) {
+      res.status(400).json({ error: e.message });
     }
   }
 
-  async actualizarCita(req: Request, res: Response) {
+  actualizarCita = async (req: Request, res: Response) => {
     try {
-      const idCita = parseInt(req.params.idCita);
-      const { fechaCita, pacienteCedula, medicoTarjetaProfesional } = req.body;
-
-      const fecha = new Date(fechaCita);
-      const cita = await this.prisma.cita.update({
-        where: { idCita },
+      const { idCita } = req.params;
+      const { fecha, pacienteCedula, medicoTarjetaProfesional } = req.body;
+      const citaActualizada = await prisma.cita.update({
+        where: { idCita: Number(idCita) },
         data: {
           fecha,
-          pacienteCedula,
-          medicoTarjetaProfesional,
+          pacienteCedula: Number(pacienteCedula),
+          medicoTarjetaProfesional: Number(medicoTarjetaProfesional),
         },
       });
-      res.json(cita);
-    } catch (error: any) {
-      res.status(400).json({ error: error.message });
+      res.json(citaActualizada);
+    } catch (error) {
+      res.status(500).json({ error: 'No se pudo actualizar la cita.' });
     }
   }
 
-  async eliminarCita(req: Request, res: Response) {
+  eliminarCita = async (req: Request, res: Response) => {
     try {
-      const idCita = parseInt(req.params.idCita);
-
-      await this.prisma.cita.delete({
-        where: { idCita },
+      const { idCita } = req.params;
+      await prisma.cita.delete({
+        where: { idCita: Number(idCita) },
       });
-      res.sendStatus(204);
-    } catch (error: any) {
-      res.status(400).json({ error: error.message });
+      res.json({ message: 'Cita eliminada exitosamente.' });
+    } catch (error) {
+      res.status(500).json({ error: 'No se pudo eliminar la cita.' });
     }
   }
 }

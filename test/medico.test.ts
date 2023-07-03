@@ -1,56 +1,51 @@
-import request from "supertest";
-import App from "../src/app";
+import request from 'supertest';
+import app from '../src/app';
 
-describe("Medico API", () => {
-  let app: App;
-
-  beforeAll(() => {
-    app = new App();
-    app.start();
+describe('Medico Router', () => {
+  it('should return all medicos', async () => {
+    const response = await request(app).get('/medicos');
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual(expect.arrayContaining([])); // Aquí puedes agregar los datos esperados de los médicos
   });
 
-  afterAll(() => {
-    app.close();
+  it('should create a new medico', async () => {
+    const newMedico = {
+      tarjetaProfesional: 12345,
+      nombre: 'John',
+      apellido: 'Doe',
+      consultorio: 'Consultorio 1',
+      correo: 'john.doe@example.com',
+      idEspecialidad: 1,
+    };
+
+    const response = await request(app).post('/medicos').send(newMedico);
+    expect(response.status).toBe(200);
+    expect(response.body).toMatchObject(newMedico);
   });
 
-   test("GET /medicos - Debe obtener una respuesta exitosa al obtener todos los médicos", async () => {
-    const response = await request(app.app).get("/medicos");
+  it('should get a medico by tarjetaProfesional', async () => {
+    const tarjetaProfesional = 12345;
+    const response = await request(app).get(`/medicos/${tarjetaProfesional}`);
     expect(response.status).toBe(200);
-  }, 20000);
+    expect(response.body.tarjetaProfesional).toBe(tarjetaProfesional);
+  });
 
-  test('POST /crear_medicos - Debe crear un nuevo médico', async () => {
-    const medicoData = {
-      tarjetaProfesional: 123456,
+  it('should update a medico', async () => {
+    const tarjetaProfesional = 12345;
+    const updatedMedico = {
       nombre: 'John',
-      apellido: 'Doe',
-      consultorio: 'A1',
-      correo: 'john.doe@example.com',
+      apellido: 'Smith',
     };
 
-    const response = await request(app.app)
-      .post('/crear_medicos')
-      .send(medicoData);
+    const response = await request(app).put(`/medicos/${tarjetaProfesional}`).send(updatedMedico);
     expect(response.status).toBe(200);
-    expect(response.body).toHaveProperty('tarjetaProfesional', 123456);
-  }, 20000);
+    expect(response.body).toMatchObject(updatedMedico);
+  });
 
-  test('PUT /actualizar_medico/tarjetaProfesional - Debe actualizar un médico existente', async () => {
-    const medicoData = {
-      nombre: 'John',
-      apellido: 'Doe',
-      consultorio: 'A2',
-      correo: 'john.doe@example.com',
-    };
-
-    const response = await request(app.app)
-      .put('/actualizar_medico/123456')
-      .send(medicoData);
+  it('should delete a medico', async () => {
+    const tarjetaProfesional = 12345;
+    const response = await request(app).delete(`/medicos/${tarjetaProfesional}`);
     expect(response.status).toBe(200);
-    expect(response.body).toHaveProperty('nombre', 'John');
-  }, 20000);
-
-  test('DELETE /eliminar_medico/tarjetaProfesional - Debe eliminar un médico existente', async () => {
-    const response = await request(app.app).delete('/eliminar_medico/123456');
-    expect(response.status).toBe(204);
-  }, 20000);
+    expect(response.body).toEqual({ message: 'Médico eliminado correctamente' });
+  });
 });

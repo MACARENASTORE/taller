@@ -2,7 +2,7 @@ export default {
      /**
       * @swagger
       *
-      * /crear_medicos:
+      * /medicos:
       *   post:
       *     summary: Crear un Médico
       *     responses:
@@ -20,7 +20,7 @@ export default {
       *
       * @swagger
       *
-      * /actualizar_medico/{tarjetaProfesional}:
+      * /medicos/{tarjetaProfesional}:
       *   put:
       *     summary: Actualizar un médico por tarjeta profesional
       *     parameters:
@@ -35,7 +35,7 @@ export default {
       *
       * @swagger
       *
-      * /eliminar_medico/{tarjetaProfesional}:
+      * /medicos/{tarjetaProfesional}:
       *   delete:
       *     summary: Eliminar un médico por tarjeta profesional
       *     parameters:

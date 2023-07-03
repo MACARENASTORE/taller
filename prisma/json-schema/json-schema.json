@@ -53,14 +53,7 @@
           }
         },
         "Especialidad": {
-          "anyOf": [
-            {
-              "$ref": "#/definitions/Especialidad"
-            },
-            {
-              "type": "null"
-            }
-          ]
+          "$ref": "#/definitions/Especialidad"
         }
       }
     },
@@ -74,20 +67,20 @@
           "type": "string",
           "format": "date-time"
         },
-        "Paciente": {
+        "Medico": {
           "anyOf": [
             {
-              "$ref": "#/definitions/Paciente"
+              "$ref": "#/definitions/Medico"
             },
             {
               "type": "null"
             }
           ]
         },
-        "Medico": {
+        "Paciente": {
           "anyOf": [
             {
-              "$ref": "#/definitions/Medico"
+              "$ref": "#/definitions/Paciente"
             },
             {
               "type": "null"

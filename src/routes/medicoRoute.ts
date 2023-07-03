@@ -1,34 +1,14 @@
 import { Router } from "express";
 import MedicoController from "../controllers/medicoController";
 
-class MedicoRouter {
-  router: Router;
-  medicoController: MedicoController;
+const router = Router();
+const medicoController = new MedicoController();
 
-  constructor() {
-    this.router = Router();
-    this.medicoController = new MedicoController();
-    this.routes();
-  }
+// Rutas para los médicos
+router.get('/medicos', medicoController.getAllMedicos);
+router.post('/medicos', medicoController.createMedico);
+router.get('/medicos/:tarjetaProfesional', medicoController.getMedicoByTarjetaProfesional);
+router.put('/medicos/:tarjetaProfesional', medicoController.updateMedico);
+router.delete('/medicos/:tarjetaProfesional', medicoController.deleteMedico);
 
-  private routes(): void {
-    this.router.get(
-      "/medicos",
-      this.medicoController.obtenerMedicos.bind(this.medicoController)
-    );
-    this.router.post(
-      "/crear_medico",
-      this.medicoController.crearMedico.bind(this.medicoController)
-    );
-    this.router.put(
-      "/actualizar_medico/tarjetaProfesional",
-      this.medicoController.actualizarMedico.bind(this.medicoController)
-    );
-    this.router.delete(
-      "/eliminar_medico/tarjetaProfesional",
-      this.medicoController.eliminarMedico.bind(this.medicoController)
-    );
-  }
-}
-
-export default new MedicoRouter().router;
+export default router;
